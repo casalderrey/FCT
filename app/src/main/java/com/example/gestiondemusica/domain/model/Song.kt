@@ -1,0 +1,63 @@
+package com.example.gestiondemusica.domain.model
+
+import android.graphics.Bitmap
+import com.example.gestiondemusica.data.model.SongEntity
+
+data class Song(
+    val title_song: String = "",
+    val artist_song: String = "",
+    val title_album: String = "",
+    val artist_album: String = "",
+    val author: String = "",
+    val composer: String = "",
+    val writer: String = "",
+    val group: String = "",
+    val genre: String = "",
+    val date: String = "",
+    val year: String = "",
+    val track: String = "",
+    val track_of: String = "",
+    val disc: String = "",
+    val disc_of: String = "",
+    val compilation: String = "",
+    val bmp: String = "",
+    val comments: String = "",
+    val lyric: String = "",
+    val image: Bitmap? = null,
+    val duration: String = "",
+    val mimetype: String = "",
+    val hasAudio: String = "",
+    val bitrate: String = "",
+    val samplerate: String = "",
+    val song_Url: String = "",
+)
+
+fun SongEntity.toDomain()=Song(
+    title_song = title,
+    artist_song= artist,
+    title_album = album,
+    artist_album = albumArtist,
+    author = author,
+    composer = composer,
+    writer = writer,
+    group = "",
+    genre = genre,
+    date = date,
+    year = year,
+    track = if(cdTrackNumber.split("/")[0]=="") {""} else {cdTrackNumber.split("/")[0]},
+    track_of = if(cdTrackNumber.split("/")[0]=="") {""} else {cdTrackNumber.split("/")[1]},
+    disc = discNumber.split("/")[0],
+    disc_of = if(discNumber.split("/")[0]=="") {""} else {discNumber.split("/")[1]},
+    compilation = compilation,
+    bmp = "",
+    comments = "",
+    lyric = "",
+    image = image,
+    duration = duration,
+    mimetype = mimetype,
+    hasAudio = hasAudio,
+    bitrate = bitrate,
+    samplerate = samplerate,
+    song_Url = songPath,
+)
+
