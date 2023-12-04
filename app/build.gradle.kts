@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material")
 
     //NAV
     implementation ("androidx.navigation:navigation-compose:2.6.0") //antes: 2.6.0
@@ -71,12 +72,17 @@ dependencies {
     implementation ("io.insert-koin:koin-androidx-navigation:3.3.2")
     implementation ("io.insert-koin:koin-androidx-compose:3.4.1")
     implementation("androidx.media3:media3-session:1.1.1")
+    implementation("androidx.core:core-ktx:+")
+    implementation("androidx.documentfile:documentfile:1.0.1")
     testImplementation ("io.insert-koin:koin-test-junit4:3.3.2")
 
 
 
     //Lottie
     implementation ("com.airbnb.android:lottie:3.4.2")
+
+    //Splash
+    implementation ("androidx.core:core-splashscreen:1.0.1")
 
 
 // Media3

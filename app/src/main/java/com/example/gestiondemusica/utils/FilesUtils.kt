@@ -4,29 +4,29 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Environment
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.documentfile.provider.DocumentFile
 import java.io.File
 
-/*
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <application
-        android:requestLegacyExternalStorage="true"
-        >
-    </application>
-</manifest>
-*/
-
 object FilesUtils {
+
     val RUTA_DISPOSITIVO = Environment.getExternalStorageDirectory()
     //val RUTA_APP = ctxt.getExternalFilesDir(null)
+
+    fun getDirectory(context: Context, folder: String = "/primary%3Abluetooth"): DocumentFile? {
+        //val treeUri = Uri.parse("content://com.android.providers.downloads.documents/tree/downloads")
+        val treeUri = Uri.parse("content://com.android.externalstorage.documents/tree/primary%3Abluetooth")
+        val docUri = Uri.withAppendedPath(treeUri, folder)
+        val documentFile = DocumentFile.fromTreeUri(context, docUri)
+        return documentFile
+    }
+
+
+
+    /*TODO: Organizar*/
 
     fun pedirPermiso(contexto: Context, actividad: Activity) {
         if (ContextCompat.checkSelfPermission(contexto, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -60,5 +60,16 @@ object FilesUtils {
         }
         return false
     }
+
+/*
+    fun getDirectory(context: Context, folder: String): DocumentFile? {
+        val rutaDispositivo = Environment.getExternalStorageDirectory().toString() + "/Download"
+        val file = File(rutaDispositivo)
+        val uri = Uri.fromFile(file)
+
+        val documentFile = DocumentFile.fromSingleUri(context, uri)
+        return documentFile
+    }
+*/
 
 }

@@ -1,27 +1,49 @@
 package com.example.gestiondemusica.presentation.view.screens.settings
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Switch
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.gestiondemusica.presentation.state.musicList.MusicViewModel
-import com.example.gestiondemusica.presentation.state.reproductorMusic.ReproductorViewModel
+import com.example.gestiondemusica.presentation.state.music.MusicViewModel
+import com.example.gestiondemusica.presentation.state.palyer.ReproductorViewModel
 import com.example.gestiondemusica.presentation.state.user.UserViewModel
+import com.example.gestiondemusica.presentation.view.screens.settings.SelectDirectory
+import com.example.gestiondemusica.presentation.view.screens.settings.SelectTheme
 
 @Composable
 fun SettingsScreen(
-    navController: NavController,
     musicVM: MusicViewModel,
     reproVM: ReproductorViewModel,
-    userViewModel: UserViewModel,
+    userVM: UserViewModel,
+    navController: NavController,
+    paddingValues: PaddingValues,
 ) {
 
-    Row(modifier = Modifier.fillMaxWidth()) {
-        Text(text = "Cambio de tema ")
-        Switch(checked = userViewModel.darkTheme, onCheckedChange = {userViewModel.setTheme(!userViewModel.darkTheme)})
-    }
+    Column(
+        modifier = Modifier.fillMaxSize().padding(paddingValues),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
 
+        SelectTheme(userVM)
+        SelectDirectory(musicVM)
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,31 +16,40 @@ class UserViewModel(): ViewModel() {
     private var _userSongList = mutableStateMapOf<String, MutableList<Song>>()
     val userSongList get() = _userSongList.toMap()
 
+
     fun setTheme(boolean: Boolean) {
-        Log.d("DebugTag", "Debug on: UserViewModel.setTheme,\n  Cambio el tema: $boolean")
+        Log.i("InfoTag", "Info on: UserViewModel.setTheme,\n  - Change Theme: $boolean")
         _darkTheme = boolean
     }
 
-    fun addSongToList(key: String = "Favorite", song: Song) {
-        Log.d("DebugTag", "Debug on: UserViewModel.addSongToList,\n  - Añadida la cancion: $song  - A la lista: $key")
-        _userSongList.getOrPut(key) {
-            mutableListOf()
-        }.add(song)
-    }
-
-    fun removeSongToList(key: String = "Favorite", song: Song) {
-        val songList = _userSongList[key] ?: return
-        if(songList.contains(song)) {
-            songList.remove(song)
-            _userSongList[key] = songList
-            Log.d("DebugTag", "Debug on: UserViewModel.removeSongToList,\n  - Eliminada cancion de la lista: $song")
+    fun addSongToList(key: String, song: Song?) {
+        if(song != null && !isSongOnList(key, song)) {
+            Log.i("InfoTag", "Info on: UserViewModel.addSongToList,\n  - Add song: ${song.titleSong} - To list: $key")
+            _userSongList.getOrPut(key) {
+                mutableListOf()
+            }.add(song)
         }
     }
 
-    fun isSongOnList(key: String = "Favorite", song: Song):Boolean {
-        Log.d("DebugTag", "Debug on: UserViewModel.isSongOnList,\n  - Busco la cancion: $song  - En la lista: $key")
-        val songList = _userSongList[key] ?: return false
-        return songList.contains(song)
+    fun removeSongToList(key: String, song: Song?) {
+        if(song != null) {
+            val songList = _userSongList[key] ?: return
+            if(songList.contains(song)) {
+                songList.remove(song)
+                _userSongList[key] = songList
+                Log.d("DebugTag", "Debug on: UserViewModel.removeSongToList,\n  - Remove Song ${song.titleSong} - To list: $key")
+            }
+        }
     }
+
+    fun isSongOnList(key: String, song: Song?): Boolean {
+        if(song != null) {
+            Log.d("DebugTag", "Debug on: UserViewModel.isSongOnList,\n  - Busco la cancion: $song  - En la lista: $key")
+            val songList = _userSongList[key] ?: return false
+            return songList.contains(song)
+        }
+        return false
+    }
+
 
 }

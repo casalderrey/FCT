@@ -29,11 +29,11 @@ class ReproductorRepository(
 
     fun getDuration() = exoPlayer.duration
 
-    fun getD() = exoPlayer.contentPosition
     fun setTime(position:Long) {
         exoPlayer.seekTo(position)
-
     }
+
+    fun getD() = exoPlayer.contentPosition
 
 
 //    fun player(urlSong:String){

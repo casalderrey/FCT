@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gestiondemusica.presentation.state.reproductorMusic.ReproductorViewModel
-import com.example.gestiondemusica.presentation.state.musicList.MusicViewModel
+import com.example.gestiondemusica.presentation.state.palyer.ReproductorViewModel
+import com.example.gestiondemusica.presentation.state.music.MusicViewModel
 import com.example.gestiondemusica.presentation.state.user.UserViewModel
-import com.example.gestiondemusica.presentation.view.bottomsheetplayer.BottomPlayerBar
-import com.example.gestiondemusica.presentation.view.scaffold.AppScaffold
+import com.example.gestiondemusica.presentation.view.scaffolds.bottomsheetscaffold.BottomSheetM2
+import com.example.gestiondemusica.presentation.view.scaffolds.scaffold.ScaffoldApp
 import com.example.gestiondemusica.presentation.view.screens.details.DetailsScreen
 import com.example.gestiondemusica.presentation.view.screens.home.HomeScreen
 import com.example.gestiondemusica.presentation.view.screens.lists.ListSongsScreen
@@ -22,33 +22,33 @@ fun AppNavigation(musicVM: MusicViewModel, reproVM: ReproductorViewModel, userVM
     NavHost(navController = navController, startDestination = AppScreen.HomeScreen.route) {
 
         composable(route = AppScreen.HomeScreen.route) {
-            AppScaffold(navController) {
-                BottomPlayerBar(musicVM, reproVM, userVM) {
-                    HomeScreen(navController, musicVM, reproVM, userVM)
+            ScaffoldApp(navController) { pvSc ->
+                BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
+                    HomeScreen(musicVM, reproVM, userVM, navController, pvBS)
                 }
             }
         }
 
         composable(route = AppScreen.ListSongsScreen.route) {
-            AppScaffold(navController) {
-                BottomPlayerBar(musicVM, reproVM, userVM) {
-                    ListSongsScreen(navController, musicVM, reproVM, userVM)
+            ScaffoldApp(navController) { pvSc ->
+                BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
+                    ListSongsScreen(musicVM, reproVM, userVM, navController, pvBS)
                 }
             }
         }
 
         composable(route = AppScreen.DetailsScreen.route) {
-            AppScaffold(navController) {
-                BottomPlayerBar(musicVM, reproVM, userVM) {
-                    DetailsScreen(navController, musicVM, reproVM, userVM)
+            ScaffoldApp(navController) { pvSc ->
+                BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
+                    DetailsScreen(musicVM, reproVM, userVM, navController, pvBS)
                 }
             }
         }
 
         composable(route = AppScreen.SettingsScreen.route) {
-            AppScaffold(navController) {
-                BottomPlayerBar(musicVM, reproVM, userVM) {
-                    SettingsScreen(navController, musicVM, reproVM, userVM)
+            ScaffoldApp(navController) { pvSc ->
+                BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
+                    SettingsScreen(musicVM, reproVM, userVM, navController, pvBS)
                 }
             }
         }

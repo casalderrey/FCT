@@ -1,4 +1,4 @@
-package com.example.gestiondemusica.presentation.view.scaffold
+package com.example.gestiondemusica.presentation.view.scaffolds.scaffold
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +23,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.gestiondemusica.presentation.nav.AppScreen
 
 @Composable
-fun ScaBottomBar(navController: NavController) {
+fun ScaBottomBar(navController: NavController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
@@ -33,33 +33,33 @@ fun ScaBottomBar(navController: NavController) {
     ) {
         NavBarItem(
             route = AppScreen.HomeScreen.route,
+            navController = navController,
             imageVector = Icons.Default.Home,
             contentDescription = null,
-            navController = navController,
             rowScope = this,
             currentDestination = currentDestination,
         )
         NavBarItem(
             route = AppScreen.ListSongsScreen.route,
+            navController = navController,
             imageVector = Icons.Default.List,
             contentDescription = null,
-            navController = navController,
             rowScope = this,
             currentDestination = currentDestination,
         )
         NavBarItem(
             route = AppScreen.DetailsScreen.route,
+            navController = navController,
             imageVector = Icons.Default.Favorite,
             contentDescription = null,
-            navController = navController,
             rowScope = this,
             currentDestination = currentDestination,
         )
         NavBarItem(
             route = AppScreen.SettingsScreen.route,
+            navController = navController,
             imageVector = Icons.Default.Settings,
             contentDescription = null,
-            navController = navController,
             rowScope = this,
             currentDestination = currentDestination,
         )
@@ -69,17 +69,15 @@ fun ScaBottomBar(navController: NavController) {
 @Composable
 fun NavBarItem(
     route: String,
+    navController: NavController,
     imageVector: ImageVector,
     contentDescription: String?,
-    navController: NavController,
     rowScope: RowScope,
     currentDestination: NavDestination?,
 ) {
-
     rowScope.NavigationBarItem(
         selected = currentDestination?.hierarchy?.any { it.route == route } == true,
         onClick = { navController.navigate(route = route) },
         icon = { Icon(imageVector = imageVector, contentDescription = contentDescription) },
     )
-
 }

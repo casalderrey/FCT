@@ -1,4 +1,4 @@
-package com.example.gestiondemusica.presentation.view.scaffold
+package com.example.gestiondemusica.presentation.view.scaffolds.scaffold
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -18,7 +18,7 @@ import androidx.navigation.NavController
 // Barra Superior
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScaTopBar(navController: NavController) {
+fun ScaTopBar(navController: NavController, modifier: Modifier = Modifier) {
     Surface(tonalElevation = 1.5.dp, shadowElevation = 6.0.dp, ) {
         TopAppBar(
             modifier = Modifier.height(45.dp),

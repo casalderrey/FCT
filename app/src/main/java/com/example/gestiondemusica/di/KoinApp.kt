@@ -1,19 +1,20 @@
 package com.example.gestiondemusica.di
 
 import android.app.Application
+import com.example.gestiondemusica.di.playerModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 
 class KoinApp : Application() {
-        override fun onCreate() {
-            super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-            startKoin { // start Koin!
-                androidLogger()
-                androidContext(this@KoinApp) // declare used Android context
-                modules(reproductorModule) // declare modules
-            }
-
+        startKoin {
+            androidLogger()
+            androidContext(this@KoinApp)
+            modules(playerModule)
         }
+
     }
+}
