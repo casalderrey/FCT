@@ -24,8 +24,8 @@ fun SettingsScreen(
 
     Column(
         modifier = Modifier.fillMaxSize().padding(paddingValues),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start,
     ) {
 
         SelectTheme(userVM)
