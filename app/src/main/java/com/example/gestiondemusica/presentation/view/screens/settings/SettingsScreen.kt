@@ -18,9 +18,7 @@ import com.example.gestiondemusica.presentation.view.screens.settings.SelectThem
 @Composable
 fun SettingsScreen(
     musicVM: MusicViewModel,
-    reproVM: ReproductorViewModel,
     userVM: UserViewModel,
-    navController: NavController,
     paddingValues: PaddingValues,
 ) {
 

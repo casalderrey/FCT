@@ -1,4 +1,4 @@
-package com.example.gestiondemusica.presentation.view.screens.details
+package com.example.gestiondemusica.presentation.view.screens.favorite
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,21 +13,27 @@ import androidx.navigation.NavController
 import com.example.gestiondemusica.presentation.state.music.MusicViewModel
 import com.example.gestiondemusica.presentation.state.palyer.ReproductorViewModel
 import com.example.gestiondemusica.presentation.state.user.UserViewModel
+import com.example.gestiondemusica.presentation.view.screens.lists.ListSongList
 
 @Composable
 fun DetailsScreen(
-    musicVM: MusicViewModel,
     reproVM: ReproductorViewModel,
-    userViewModel: UserViewModel,
-    navController: NavController,
+    userVM: UserViewModel,
     paddingValues: PaddingValues,
 ) {
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(paddingValues),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(text = "Details")
+    if(userVM.userSongList.keys.contains("Favorite")){
+        ListSongList(songList = userVM.userSongList.getValue("Favorite"), reproVM = reproVM)
+    }else{
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(text = "Todavía no hay canciones añadidas a favoritos")
+        }
     }
+
 }

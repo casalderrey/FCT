@@ -22,12 +22,23 @@ class UserViewModel(): ViewModel() {
         _darkTheme = boolean
     }
 
+    fun createList(key: String):Boolean{
+        if(_userSongList.keys.contains(key)){
+            return false
+        }
+        _userSongList.getOrPut(key) {
+            mutableListOf()
+        }
+
+        return true;
+    }
+
     fun addSongToList(key: String, song: Song?) {
         if(song != null && !isSongOnList(key, song)) {
             Log.i("InfoTag", "Info on: UserViewModel.addSongToList,\n  - Add song: ${song.titleSong} - To list: $key")
             _userSongList.getOrPut(key) {
                 mutableListOf()
-            }.add(song)
+            }!!.add(song)
         }
     }
 

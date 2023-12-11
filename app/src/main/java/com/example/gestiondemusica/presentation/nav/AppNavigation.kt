@@ -9,9 +9,10 @@ import com.example.gestiondemusica.presentation.state.music.MusicViewModel
 import com.example.gestiondemusica.presentation.state.user.UserViewModel
 import com.example.gestiondemusica.presentation.view.scaffolds.bottomsheetscaffold.BottomSheetM2
 import com.example.gestiondemusica.presentation.view.scaffolds.scaffold.ScaffoldApp
-import com.example.gestiondemusica.presentation.view.screens.details.DetailsScreen
+import com.example.gestiondemusica.presentation.view.screens.favorite.DetailsScreen
 import com.example.gestiondemusica.presentation.view.screens.home.HomeScreen
 import com.example.gestiondemusica.presentation.view.screens.lists.ListSongsScreen
+import com.example.gestiondemusica.presentation.view.screens.search.SearchScreen
 import com.example.gestiondemusica.presentation.view.screens.settings.SettingsScreen
 
 @Composable
@@ -24,7 +25,7 @@ fun AppNavigation(musicVM: MusicViewModel, reproVM: ReproductorViewModel, userVM
         composable(route = AppScreen.HomeScreen.route) {
             ScaffoldApp(navController) { pvSc ->
                 BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
-                    HomeScreen(musicVM, reproVM, userVM, navController, pvBS)
+                    HomeScreen(musicVM, reproVM, userVM, pvBS)
                 }
             }
         }
@@ -32,7 +33,7 @@ fun AppNavigation(musicVM: MusicViewModel, reproVM: ReproductorViewModel, userVM
         composable(route = AppScreen.ListSongsScreen.route) {
             ScaffoldApp(navController) { pvSc ->
                 BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
-                    ListSongsScreen(musicVM, reproVM, userVM, navController, pvBS)
+                    ListSongsScreen(musicVM, reproVM, userVM, pvBS)
                 }
             }
         }
@@ -40,7 +41,7 @@ fun AppNavigation(musicVM: MusicViewModel, reproVM: ReproductorViewModel, userVM
         composable(route = AppScreen.DetailsScreen.route) {
             ScaffoldApp(navController) { pvSc ->
                 BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
-                    DetailsScreen(musicVM, reproVM, userVM, navController, pvBS)
+                    DetailsScreen( reproVM, userVM, pvBS)
                 }
             }
         }
@@ -48,7 +49,15 @@ fun AppNavigation(musicVM: MusicViewModel, reproVM: ReproductorViewModel, userVM
         composable(route = AppScreen.SettingsScreen.route) {
             ScaffoldApp(navController) { pvSc ->
                 BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
-                    SettingsScreen(musicVM, reproVM, userVM, navController, pvBS)
+                    SettingsScreen(musicVM,  userVM,  pvBS)
+                }
+            }
+        }
+
+        composable(route = AppScreen.SearchScreen.route) {
+            ScaffoldApp(navController) { pvSc ->
+                BottomSheetM2(musicVM, reproVM, userVM, pvSc) { pvBS ->
+                    SearchScreen(navController, musicVM, reproVM)
                 }
             }
         }

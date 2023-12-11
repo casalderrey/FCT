@@ -1,6 +1,7 @@
 package com.example.gestiondemusica.data.repository
 
 import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 
 class ReproductorRepository(
@@ -12,6 +13,36 @@ class ReproductorRepository(
         exoPlayer.setMediaItem(mediaItem)
         exoPlayer.prepare()
     }
+
+    fun setPlayerList(urlSongs: List<String>) {
+        val mediaItems:List<MediaItem> = urlSongs.map(){ MediaItem.fromUri(it)}
+        exoPlayer.setMediaItems(mediaItems)
+        exoPlayer.prepare()
+    }
+
+    fun seekToNextMediaItem() {
+        exoPlayer.seekToNextMediaItem()
+    }
+
+    fun seekToPreviousMediaItem() {
+        exoPlayer.seekToPreviousMediaItem()
+    }
+
+    fun seekToNext() {
+        exoPlayer.seekToNext()
+    }
+
+    fun seekToPrevious() {
+        exoPlayer.seekToPrevious()
+    }
+
+    fun getCurrentSongOfList():Int = exoPlayer.currentMediaItemIndex
+
+    fun setNextSong():Int = exoPlayer.nextMediaItemIndex
+
+    fun setPreviousSong():Int = exoPlayer.previousMediaItemIndex
+
+
 
     fun play() {
         exoPlayer.play()
@@ -34,16 +65,5 @@ class ReproductorRepository(
     }
 
     fun getD() = exoPlayer.contentPosition
-
-
-//    fun player(urlSong:String){
-//        val mediaItem = MediaItem.fromUri(urlSong)
-//        val mediaSourceFactory = DefaultMediaSourceFactory(context)
-//        val mediaSource = mediaSourceFactory.createMediaSource(mediaItem)
-//
-//        exoPlayer.setMediaSource(mediaSource)
-//        exoPlayer.prepare()
-//    }
-
 
 }
